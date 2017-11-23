@@ -36,7 +36,7 @@ begin
   writeln('***************************************');
   gotoxy(25,13);
   write('Escolha uma opção: ');
-  readln(resp);
+  readln(resp); 
   clrscr;
   
 end;
