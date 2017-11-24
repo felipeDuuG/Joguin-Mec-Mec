@@ -1,110 +1,291 @@
 # Joguin-Mec-Mec
 meu bonde
 
+
 Program Pzim ;
+uses
+crt;
+
+procedure jogodavelha;
 var
 resp:integer;
 campo:array[1..3,1..3] of string;
-jogada:integer;
+vez,jogada,numero_jogadas:integer;
+cont:integer;
 cont_jogador:integer;
 jogada_ok:boolean;
 jogador:array [1..2] of string;
+vencedor:integer;
+simbolo:string;
 l,c:integer;
-//PROCEDIMENTO MENU
-procedure menu();
-var
-i:integer;
 begin
-  gotoxy(19,3);
-  writeln('     __                 ____ _   __    ____');
-  gotoxy(19,4);
-  writeln(' __ / /__  ___ ____  __/ / /| | / /__ / / /  ___ _');
-  gotoxy(19,5);
-  writeln('/ // / _ \/ _ `/ _ \/_  . __/ |/ / -_) / _ \/ _ `/');
-  gotoxy(19,6);
-  writeln('\___/\___/\_, /\___/_    __/|___/\__/_/_//_/\_,_/');
-  gotoxy(19,7);
-  writeln('         /___/      /_/_/                        ');
-  
-  gotoxy(23,9);
-  writeln('***************************************');
-  gotoxy(23,10);
-  writeln('*            1-Iniciar Jogo           *');
-  gotoxy(23,11);
-  writeln('*            2-Desenvolvedores        *');
-  gotoxy(23,12);
-  writeln('***************************************');
-  gotoxy(25,13);
-  write('Escolha uma opção: ');
-  readln(resp); 
-  clrscr;
-  
-end;
-
-
- //PROGRAMA PRINCIPAL
- 
-Begin
-  menu();
-  if (resp = 1) then
+  for l:= 1 to 3 do
   begin
-    for l:= 1 to 3 do
+    for c:= 1 to 3 do
     begin
-      for c:= 1 to 3 do
-      begin
-        campo[l,c] := ' ';
-      end;
+      campo[l,c] := ' ';
+    end;
+  end;
+  
+  begin
+    for cont_jogador:= 1 to 2 do
+    begin
+      gotoxy (35,3);
+      writeln ('JOGADORES');
+      gotoxy (25,5);
+      write ('Digite o nome do JOGADOR ',cont_jogador,': ');
+      read(jogador[cont_jogador]);
+      clrscr;
     end;
     
- 
-for cont_jogador:= 1 to 2 do
-begin
- gotoxy (35,3);
-writeln ('JOGADORES');
-gotoxy (25,5);
-write ('Digite o nome do JOGADOR ',cont_jogador,': ');
-read(jogador[cont_jogador]);
-clrscr;
-end;
-cont_jogador:=1;
-
-
-
-
-
-//Exibe instruções    
-gotoxy(35,3);    
-writeln('INSTRUÇÕES');
-gotoxy (15,5);
-writeln ('O Jogador 1 começa, digite o numero de 1 a 9 usando');
-gotoxy (15,6);
-writeln ('o teclado numerico correspondente as ''casas'', quem');
-gotoxy (15,7);
-writeln ('completar uma linha vertical horizontal ou diagonal');
-gotoxy (15,9);
-writeln ('PRESSIONE QUALQUER TECLA PARA COMEÇAR...');
-readkey;
-clrscr; // Limpa a tela
-
-
-//Desenha o jogo da velha
-            
+    
+    
+    
+    
+    
+    //Exibe instruções
+    gotoxy(35,3);
+    writeln('INSTRUÇÕES');
+    gotoxy (15,5);
+    writeln ('O Jogador 1 começa, digite o numero de 1 a 9 usando');
+    gotoxy (15,6);
+    writeln ('o teclado numerico correspondente as ''casas'', quem');
+    gotoxy (15,7);
+    writeln ('completar uma linha vertical horizontal ou diagonal');
+    gotoxy (15,9);
+    writeln ('PRESSIONE QUALQUER TECLA PARA COMEÇAR...');
+    readkey;
+    clrscr; // Limpa a tela
+    
+    numero_jogadas:= 0;
+    simbolo:= 'X';
+    cont_jogador:=1;
+    vencedor:= 0;
+    
+    
+     while (vencedor=0) do
+     begin
+    //Desenha o jogo da velha
+      
+      
       writeln;
-       gotoxy(30,5); 
+      gotoxy(30,5);
       writeln('  ', campo[1, 1], ' | ', campo[1, 2], ' | ', campo[1, 3]);
-       gotoxy(30,6); 
+      gotoxy(30,6);
       writeln(' -----------');
-       gotoxy(30,7); 
+      gotoxy(30,7);
       writeln('  ', campo[2, 1], ' | ', campo[2, 2], ' | ', campo[2, 3]);
-       gotoxy(30,8); 
+      gotoxy(30,8);
       writeln(' -----------');
-       gotoxy(30,9); 
+      gotoxy(30,9);
       writeln('  ', campo[3, 1], ' | ', campo[3, 2], ' | ', campo[3, 3]);
       writeln;
+      gotoxy(15,2);
+      writeln ('Jogador 1 ',jogador[1],'= X');
+      gotoxy(45,2);
+      writeln ('Jogador 2 ',jogador[2],'= O');
+      gotoxy (25,12);
       
-  write('Vez do JOGADOR 1:');
-  read(jogada;
-			      
-end;
-  
-End.
+       repeat
+      write ('VEZ DO JOGADOR ',cont_jogador,': ');
+      read(jogada);
+      clrscr;
+      case (jogada) of
+        1:
+        begin
+          if (campo[3,1] = ' ') then
+          begin
+            campo[3,1]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+        end;
+        2:
+        begin
+          if (campo[3,2] = ' ') then
+          begin
+            campo[3,2]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+        end;
+        3:
+        begin
+          if (campo[3,3] = ' ') then
+          begin
+            campo[3,3]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+        end;
+        4:
+        begin
+          if (campo[2,1] = ' ') then
+          begin
+            campo[2,1]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+        end;
+        5:
+        begin
+          if (campo[2,2] = ' ') then
+          begin
+            campo[2,2]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+        end;
+        6:
+        begin
+          if (campo[2,3] = ' ') then
+          begin
+            campo[2,3]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+        end;
+        7:
+        begin
+          if (campo[1,1] = ' ') then
+          begin
+            campo[1,1]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+        end;
+        
+        8:
+        begin
+          if (campo[1,2] = ' ') then
+          begin
+            campo[1,2]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+        end;
+        9:
+        begin
+          if (campo[1,3] = ' ') then
+          begin
+            campo[1,3]:=simbolo;
+            jogada_ok:=true;
+          end
+          else
+          jogada_ok:=false;
+
+        end;
+        
+      end;//Termina case
+        
+        
+      until (jogada_ok = true);//fim repeat
+        
+        numero_jogadas := numero_jogadas + 1;
+        
+        //Verifica se há algum jogador
+        if (campo[1, 1] = campo[1, 2]) and (campo[1, 2] = campo[1, 3]) and (campo[1, 3] <> ' ') then
+        begin
+          vencedor := cont_jogador;
+        end
+        else if (campo[2, 1] = campo[2, 2]) and (campo[2, 2] = campo[2, 3]) and (campo[2, 3] <> ' ') then
+        begin
+          vencedor := cont_jogador;
+        end
+        else if (campo[3, 1] = campo[3, 2]) and (campo[3, 2] = campo[3, 3]) and (campo[3, 3] <> ' ') then
+        begin
+          vencedor := cont_jogador;
+        end
+        else if (campo[1, 1] = campo[2, 1]) and (campo[2, 1] = campo[3, 1]) and (campo[3, 1] <> ' ') then
+        begin
+          vencedor := cont_jogador;
+        end
+        else if (campo[1, 2] = campo[2, 2]) and (campo[2, 2] = campo[3, 2]) and (campo[3, 2] <> ' ') then
+        begin
+          vencedor := cont_jogador;
+        end
+        else if (campo[1, 3] = campo[2, 3]) and (campo[2, 3] = campo[3, 3]) and (campo[3, 3] <> ' ') then
+        begin
+          vencedor := cont_jogador;
+        end
+        else if (campo[1, 1] = campo[2, 2]) and (campo[2, 2] = campo[3, 3]) and (campo[3, 3] <> ' ') then
+        begin
+          vencedor := cont_jogador;
+        end
+        else if (campo[1, 3] = campo[2, 2]) and (campo[2, 2] = campo[3, 1]) and (campo[3, 1] <> ' ') then
+        begin
+          vencedor := cont_jogador;
+        end
+        else if (numero_jogadas = 9) then
+        begin
+          vencedor := 3;
+        end;
+        if (cont_jogador = 2) then
+      begin
+         cont_jogador := 1;
+         simbolo:= 'X';
+      end
+      else
+      begin
+         cont_jogador := 2;
+         simbolo:= 'O';
+      end;
+    
+        
+      end;//FIM WHILE
+      
+      
+    end;//FIM DO PROCEDIMENTO
+    end;
+    
+    //PROCEDIMENTO MENU
+    procedure menu();
+    var
+    resp:integer;
+    begin
+      gotoxy(19,3);
+      writeln('     __                 ____ _   __    ____');
+      gotoxy(19,4);
+      writeln(' __ / /__  ___ ____  __/ / /| | / /__ / / /  ___ _');
+      gotoxy(19,5);
+      writeln('/ // / _ \/ _ `/ _ \/_  . __/ |/ / -_) / _ \/ _ `/');
+      gotoxy(19,6);
+      writeln('\___/\___/\_, /\___/_    __/|___/\__/_/_//_/\_,_/');
+      gotoxy(19,7);
+      writeln('         /___/      /_/_/                        ');
+      
+      gotoxy(23,9);
+      writeln('***************************************');
+      gotoxy(23,10);
+      writeln('*            1-Iniciar Jogo           *');
+      gotoxy(23,11);
+      writeln('*            2-Desenvolvedores        *');
+      gotoxy(23,12);
+      writeln('***************************************');
+      gotoxy(25,13);
+      write('Escolha uma opção: ');
+      readln(resp);
+      clrscr;
+      if (resp = 1) then
+      jogodavelha;
+    end;
+    
+    
+    
+    
+    
+    
+    //PROGRAMA PRINCIPAL
+    
+    Begin
+      menu();
+      
+    End.
