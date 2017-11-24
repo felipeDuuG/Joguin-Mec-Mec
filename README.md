@@ -1,10 +1,86 @@
-# Joguin-Mec-Mec
-meu bonde
-
-
 Program Pzim ;
 uses
 crt;
+procedure velhinha;
+begin
+end;
+procedure quiz1;
+var
+
+resposta:array[1..5] of string;
+pontu:integer;
+score:integer;
+
+
+
+begin
+score := 0;
+clrscr;
+
+writeln ('            VOCÊ ENTENDE DE LOGICA DE PROGRAMAÇÃO?            ');
+
+writeln ('  PERGUNTA 1: Oque é um vetor                ') ;
+begin
+read (    resposta[1]);
+	 if (   resposta[1] = 'teste') then
+	 begin
+	 score:= score + 1;
+	writeln ('       VOCE ACERTOU MEN, BOA!       ');
+	end
+	else
+	
+	writeln ('ERROU PARCA');
+	
+	writeln  ('   >>>>> Próxima Pergunta ( Digite uma tecla para próxima pergunta)         ');
+	readkey;
+	 
+clrscr;
+writeln ('PERGUNTA 2:  Oque é um procedimento        ');
+read (   resposta[2]);
+  if (    resposta[2] = 'teste 2') then
+  begin
+  score := score + 1;
+ writeln ('VOCE ACERTOU BRO!');
+  end
+  else 
+ 
+ writeln ('ERROU KK');
+ writeln ('            >>>>> Próxima Pergunta ( Digite uma tecla para próxima pergunta)    ');
+ readkey; 
+  
+  
+clrscr;  
+
+writeln ('PERGUNTA 3: Oque é uma função         ');
+read(    resposta[3]) ;
+   if (resposta[3] = 'teste 3') then
+	 begin 
+	 score := score + 1;
+	 writeln ('MAIS UMA REPOSTA CERTA! NICE!');
+	 end
+	 else
+	 writeln ('ERROU');
+	 writeln ('          >>>>> Próxima Pergunta ( Digite uma tecla para próxima pergunta)    ');
+	 readkey;
+	 
+	 
+	 writeln ('        OK   SEU RESULTADO FINAL EM PONTOS FOI',score); 
+	 
+	   
+		
+	
+				end;
+		
+end;
+
+procedure quiz2;
+ 
+begin
+clrscr;
+writeln ('          QUIZ LÓGICA                   ');
+end;
+
+
 
 procedure jogodavelha;
 var
@@ -238,11 +314,53 @@ begin
          cont_jogador := 2;
          simbolo:= 'O';
       end;
-    
+      
+      
+      
+   
         
       end;//FIM WHILE
       
-      
+       clrscr; // Limpa a tela
+  writeln;
+  writeln('  ', campo[1, 1], ' | ', campo[1, 2], ' | ', campo[1, 3]);
+  writeln(' -----------');
+  writeln('  ', campo[2, 1], ' | ', campo[2, 2], ' | ', campo[2, 3]);
+  writeln(' -----------');
+  writeln('  ', campo[3, 1], ' | ', campo[3, 2], ' | ', campo[3, 3]);
+  writeln;
+     
+  if (vencedor = 1) then
+  begin
+    write('            Parabens :',jogador[1],'!Voce ganhou                ');
+    write ('      >>>>>>>>> O JOGO NÃO ACABOU! <<<<<<<<                     ');
+    writeln ('             (Pressione uma tecla)                            '); 
+    readkey;
+    quiz1;
+    
+ 
+    
+  end
+  else if(vencedor = 2) then
+  begin
+    write(' Parabens :', jogador[2],'!Voce ganhou!');
+    write ('      >>>>>>>>> O JOGO NÃO ACABOU! <<<<<<<<             ');
+    writeln ('             (Pressione uma tecla)                    '); 
+    readkey;
+    
+         quiz2;
+  
+  
+ 
+  
+  end
+  else
+  begin
+    write(' Ops... Deu velha...');
+  end;
+  
+								 
+        
     end;//FIM DO PROCEDIMENTO
     end;
     
@@ -278,7 +396,7 @@ begin
       jogodavelha;
     end;
     
-    
+      
     
     
     
@@ -287,5 +405,4 @@ begin
     
     Begin
       menu();
-      
-    End.
+End.
